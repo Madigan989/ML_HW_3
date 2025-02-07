@@ -11,8 +11,6 @@ execute:
 ---
 
 
-
-
 ```{python}
 import numpy as np
 import matplotlib.pyplot as plt
@@ -22,5 +20,72 @@ import matplotlib.pyplot as plt
 import patsy
 import pandas as pd
 
-df = pd.read_csv("")
+df_default = pd.read_csv("C:/Users/madig/Documents/Github/Year 2024-2025/ML_HW_3/Default.csv")
+df_auto = pd.read_csv("C:/Users/madig/Documents/Github/Year 2024-2025/ML_HW_3/Auto.csv")
+```
+
+Section 1
+
+(a)
+If the true decision boundary is a straight line, LDA will work better than QDA on both the training and test sets. On the training set, QDA is more flexible and can fit more complex patterns, but this extra flexibility is unnecessary and can lead to overfitting. On the test set, LDA performs better because it correctly assumes a straight-line boundary, while QDA may introduce too much complexity, making its predictions less accurate. Since LDA matches the true pattern better, it will generally give better results in this case.
+
+(b)
+
+If the true decision boundary is not a straight line, QDA will work better than LDA. On the training set, QDA is more flexible and can fit complex shapes better, so it will have a lower error than LDA. On the test set, QDA is still likely to perform better because it can capture the true non-linear pattern, while LDA, which assumes a straight-line boundary, will make more mistakes. However, if there is not much data, QDA’s extra flexibility might cause overfitting, making its test performance worse.
+
+(c)
+
+As the sample size increases, the test accuracy of QDA relative to LDA is expected to improve. This is because QDA is more flexible and can model complex decision boundaries better, but it also requires more data to estimate its additional parameters accurately. When the sample size is small, QDA may overfit, leading to worse test performance. However, with more data, QDA can learn the true decision boundary more effectively, reducing overfitting and improving its accuracy compared to LDA.
+
+(d)
+
+False. If the true decision boundary is linear, LDA will generally achieve a lower test error than QDA. While QDA is flexible enough to model a linear boundary, it also estimates more parameters, which increases the risk of overfitting, especially with limited data. LDA, on the other hand, makes stronger assumptions that match the true boundary, leading to better generalization and lower test error. QDA’s extra flexibility is unnecessary in this case and can introduce more variance, making it less reliable for test predictions.
+
+Section 2:
+
+(a)
+
+```{python}
+import math
+
+# Given values
+beta_0 = -6
+beta_1 = 0.05
+beta_2 = 1
+X1 = 40  # hours studied
+X2 = 3.5  # undergrad GPA
+
+# Compute the linear predictor
+eta = beta_0 + beta_1 * X1 + beta_2 * X2
+
+# Apply the sigmoid function to compute the probability
+p = 1 / (1 + math.exp(-eta))
+
+# Print the result
+print(f"Predicted probability: {p:.4f}")
+
+```
+
+There is a 37.75% probability that a student who studies for 40 hours and has an undergrad GPA of 3.5 will receive an A in the statistics class.
+
+(b)
+
+```{python}
+# Given values
+beta_0 = -6
+beta_1 = 0.05
+beta_2 = 1
+X2 = 3.5  # undergrad GPA
+
+# Solve for X1 (hours studied) when probability is 50%
+X1 = (-beta_0 - beta_2 * X2) / beta_1
+
+# Print the result
+print(f"Required hours of study: {X1:.2f}")
+
+```
+
+
+```{python}
+
 ```
